@@ -1,8 +1,6 @@
 <?php
 namespace vendor\seek\database;
 
-use vendor\seek\ADatabase;
-
 class PDO extends ADatabase
 {
     protected $conn;
@@ -10,6 +8,7 @@ class PDO extends ADatabase
     public function connect($host, $user, $passwd, $dbname, $port = 3306)
     {
         $conn = new \PDO("mysql:host=$host;dbname=$dbname", $user, $passwd);
+        $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->conn = $conn;
     }
 

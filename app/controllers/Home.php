@@ -9,7 +9,7 @@ class Home extends Controller
 {
     public function index()
     {
-        $userModel = User::find()->where(['id' => 1])->select('id,name,description,age')->all();
+        $userModel = User::find()->select('id,name,description,age')->all();
         return [
             'users' => $userModel
         ];

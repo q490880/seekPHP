@@ -1,9 +1,17 @@
 <?php
+
+use vendor\seek\App;
+
 define('BASEDIR', __DIR__);
 define('DEBUG', true);
-include_once "vendor\seek\Loader.php";
-spl_autoload_register("vendor\seek\Loader::autoLoad");
 
+require (BASEDIR . '/vendor/autoload.php');
+require (BASEDIR . '/vendor/seek/Loader.php');
+App::getInstance()->start();
+//$a->critical('critical');
+//$a->warning('warning');
+//$a->alert('alert');
+//$a->emerg('emerg');
 //class Event extends \seek\event\EventGenerator
 //{
 //    public function trigger()
@@ -127,5 +135,3 @@ spl_autoload_register("vendor\seek\Loader::autoLoad");
 //foreach ($user as $key => $value) {
 //    print_r($value."<br/>");
 //}
-echo '<meta http-equiv="content-type" content="text/html;charset=utf-8">';
-vendor\seek\App::getInstance()->start();

@@ -1,9 +1,6 @@
 <?php
 namespace vendor\seek\Database;
 
-
-use vendor\seek\ADatabase;
-
 class MySQLi extends ADatabase
 {
     public function connect($host, $user, $passwd, $dbname, $port = 3306)

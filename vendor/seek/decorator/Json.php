@@ -1,19 +1,17 @@
 <?php
 namespace vendor\seek\decorator;
 
-class Json
+class Json implements IDecorator
 {
     protected $controller;
 
-    public function beforeRequest($controller)
+    public function before($controller)
     {
         $this->controller = $controller;
     }
 
-    public function afterRequest($returnValue)
+    public function after($value)
     {
-        if (isset($_GET['app']) && $_GET['app'] == 'json') {
-            echo json_encode($returnValue);
-        }
+        echo json_encode($value);
     }
 }

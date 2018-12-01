@@ -20,6 +20,15 @@ abstract class Controller
         $this->data[$key] = $value;
     }
 
+    public function afterAction() {
+        return true;
+    }
+
+    public function beforeAction()
+    {
+        return true;
+    }
+
     public function display($file = '')
     {
         if (empty($file))

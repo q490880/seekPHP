@@ -1,20 +1,17 @@
 <?php
 namespace vendor\seek\decorator;
 
-class Template
+class Template implements IDecorator
 {
     protected $controller;
 
-    public function beforeRequest($controller)
+    public function before($controller)
     {
         $this->controller = $controller;
     }
 
-    public function afterRequest($returnValue)
+    public function after($value)
     {
-        if (isset($_GET['app']) && $_GET['app'] == 'json') {
-            return;
-        }
         if ($returnValue) {
             foreach ($returnValue as $key => $value) {
                 $this->controller->assign($key, $value);
