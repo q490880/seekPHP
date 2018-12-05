@@ -13,7 +13,7 @@ class App
     protected static $instance;
     public $log;
     public $config;
-
+    public $action_id;
     protected function __construct()
     {
         $this->config = new Config(BASEDIR.'/configs');
@@ -77,6 +77,7 @@ class App
             $param = isset($config['defaultController']) ? $config['defaultController'] : 'home/index';
         }
         list($controller, $view) = explode('/', trim($param, '/'));
+        $this->action_id = $view;
         $controllerConfigName = strtolower($controller);
         $controllerName = ucwords($controller);
         $classPath = '\\app\\controllers\\'.$controllerName;
