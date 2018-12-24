@@ -16,6 +16,9 @@ class PDO extends ADatabase
     {
         $this->resource = $this->conn->prepare($sql);
         $this->resource->execute($params);
+        if (strtolower(substr($sql,0,6)) != "select") {
+            return $this->resource->rowCount();
+        }
         return $this;
     }
 

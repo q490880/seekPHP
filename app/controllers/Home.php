@@ -8,10 +8,9 @@ use vendor\seek\Controller;
 
 class Home extends Controller
 {
-    public function create()
+    public function index()
     {
         $userModel = new User();
-        $result = $userModel->load();
-        return $result;
+        $user = $userModel->where(['id' => 1])->asArray()->all();
     }
 }

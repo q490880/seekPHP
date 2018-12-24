@@ -5,7 +5,6 @@ use vendor\seek\tools\StringHelper;
 
 abstract class ApiModel extends Model
 {
-    public $attribute;
     public $scenario;
     /*
      * 规则类型介绍
@@ -56,13 +55,6 @@ abstract class ApiModel extends Model
         return [
 
         ];
-    }
-
-    public function __get($name)
-    {
-        if (isset($this->attribute[$name])) {
-            return $this->attribute[$name];
-        }
     }
 
     public function scenario()

@@ -136,7 +136,7 @@ class App
         } else {
             // 配置全局异常捕获
             set_exception_handler(function (Exception $e){
-                print_r($e->getMessage());
+                $this->log->error($e->getMessage());
             });
             // 配置全部错误捕获
             set_error_handler(function ($errno, $errstr, $errfile, $errline) {

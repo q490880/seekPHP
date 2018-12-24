@@ -17,4 +17,5 @@ class Register
     {
         unset(self::$objects[$alias]);
     }
+
 }

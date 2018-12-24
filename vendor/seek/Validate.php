@@ -5,14 +5,15 @@ use vendor\seek\tools\StringHelper;
 class Validate
 {
     public $validateData;
+    public $attribute;
     public $rule = [];
     public function __construct(ApiModel $model)
     {
         $rules = $model->rules();
-        $scenario = $model->scenario();
+        $this->attribute = $model->attribute();
         $this->validateData = &$model->attribute;
-        if ($rules && isset($rules[$scenario])) {
-            $this->rule = $rules[$scenario];
+        if ($rules && isset($rules[$model->scenario()])) {
+            $this->rule = $rules[$model->scenario()];
         }
     }
 
@@ -33,7 +34,9 @@ class Validate
                     }
                     continue;
                 }
-                return $this->$verifyModel($filed,$requestValue,$ruleData);
+                if ($resultVerify = $this->$verifyModel($filed,$requestValue,$ruleData)) {
+                    return $resultVerify;
+                }
             }
         }
     }
@@ -110,8 +113,9 @@ class Validate
             }
             $resultMessage = $message[$validateModel];
         }
-
-
+        if (isset($this->attribute[$key])) {
+            $key = $this->attribute[$key];
+        }
         $resultMessage = str_replace("{field}", $key, $resultMessage);
         $resultMessage = str_replace("{value}", $value, $resultMessage);
         return ['message' => $resultMessage, 'code' => $resultCode];
